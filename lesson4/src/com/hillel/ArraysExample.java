@@ -10,6 +10,11 @@ public class ArraysExample {
             array[i] = i;
         }
         
+        for (int i = 0; i < array.length; i++) {
+            int element = array[i];
+            System.out.println(element);
+        }
+        
         for (int element : array) {
             System.out.println(element);
         }
