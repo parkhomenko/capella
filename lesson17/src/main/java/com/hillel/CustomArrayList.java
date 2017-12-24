@@ -1,5 +1,6 @@
 package com.hillel;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class CustomArrayList implements CustomList {
@@ -85,5 +86,56 @@ public class CustomArrayList implements CustomList {
   @Override
   public int indexOf(String element) {
     return 0;
+  }
+
+  @Override
+  public Iterator iterator() {
+    return new ListIterator();
+  }
+
+  public Iterator backwardIterator() {
+    return new BackwardListIterator();
+  }
+
+  private class ListIterator implements Iterator {
+
+    private int current;
+
+    ListIterator() {
+      current = 0;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return current < size;
+    }
+
+    @Override
+    public Object next() {
+      if (current >= size) {
+        throw new NoSuchElementException();
+      }
+
+      return array[current++];
+    }
+  }
+
+  private class BackwardListIterator implements Iterator {
+
+    private int current;
+
+    BackwardListIterator() {
+      current = size - 1;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return current >= 0;
+    }
+
+    @Override
+    public Object next() {
+      return array[current--];
+    }
   }
 }
